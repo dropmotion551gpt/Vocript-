@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vocript – Understand any long video in minutes</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Noto+Sans+Devanagari:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f5f1;--bg2:#ecebe4;--card:#fff;--ink:#14161f;--mut:#667085;--ln:#e3e1d8;--ac:#4f46e5;--ac2:#0ea5a4;--gold:#b8893b;--soft:#eeeefb;--sh:0 1px 2px rgba(20,22,31,.05),0 12px 40px rgba(20,22,31,.07);color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b0e17;--bg2:#10141f;--card:#141927;--ink:#eef0f6;--mut:#8b93a7;--ln:#232a3d;--ac:#8b85ff;--ac2:#34d3c8;--gold:#d9aa5b;--soft:#1b2036;--sh:0 1px 2px rgba(0,0,0,.4),0 16px 50px rgba(0,0,0,.35);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0b0e17;--bg2:#10141f;--card:#141927;--ink:#eef0f6;--mut:#8b93a7;--ln:#232a3d;--ac:#8b85ff;--ac2:#34d3c8;--gold:#d9aa5b;--soft:#1b2036;--sh:0 1px 2px rgba(0,0,0,.4),0 16px 50px rgba(0,0,0,.35);color-scheme:dark}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(900px 400px at 80% -10%,color-mix(in srgb,var(--ac) 16%,transparent),transparent),var(--bg);color:var(--ink);font:400 15px/1.6 'Inter','Noto Sans Devanagari',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.w{max-width:880px;margin:0 auto;padding:0 18px 48px}
+svg.i{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+nav{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
+.br{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;letter-spacing:-.3px}
+.lm{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--ac),var(--ac2));display:grid;place-items:center;color:#fff}.lm svg{width:16px;height:16px}
+.nr{display:flex;gap:8px;align-items:center}
+.pill{border:1px solid var(--ln);background:var(--card);border-radius:99px;padding:5px 12px;font-size:12.5px;color:var(--mut);font-weight:500}
+button,select,textarea,input{font:inherit;color:inherit}
+.ib{width:34px;height:34px;border-radius:50%;border:1px solid var(--ln);background:var(--card);display:grid;place-items:center;cursor:pointer}
+.hero{padding:26px 0 22px;text-align:center}
+.ey{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:600}
+h1{font:600 clamp(32px,7vw,52px)/1.08 'Fraunces',Georgia,serif;letter-spacing:-1.2px;margin:10px 0 12px}
+.hero p{color:var(--mut);max-width:540px;margin:0 auto}
+.card{background:var(--card);border:1px solid var(--ln);border-radius:22px;box-shadow:var(--sh);padding:18px}
+.seg{display:inline-flex;background:var(--bg2);border-radius:12px;padding:3px;margin-bottom:12px}
+.seg button{border:0;background:none;padding:7px 16px;border-radius:9px;cursor:pointer;font-weight:600;color:var(--mut);font-size:13.5px}.seg button.on{background:var(--card);color:var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.1)}
+.ur{display:flex;gap:8px}.ur input{flex:1}
+input[type=url],input[type=text],textarea,select{width:100%;border:1px solid var(--ln);background:var(--bg);border-radius:12px;padding:11px 13px;outline:none}
+input:focus,textarea:focus,select:focus{border-color:var(--ac);box-shadow:0 0 0 3px color-mix(in srgb,var(--ac) 18%,transparent)}
+textarea{min-height:120px;resize:vertical;margin-top:10px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--ln);background:var(--card);border-radius:12px;padding:10px 16px;cursor:pointer;font-weight:600;font-size:14px;white-space:nowrap}
+.btn.p{background:linear-gradient(135deg,var(--ac),color-mix(in srgb,var(--ac) 60%,var(--ac2)));color:#fff;border:0;box-shadow:0 8px 24px color-mix(in srgb,var(--ac) 35%,transparent)}.btn:disabled{opacity:.55;cursor:wait}
+.note{font-size:13px;color:var(--mut);background:var(--bg2);border-radius:12px;padding:10px 13px;margin-top:10px;display:none}.note.on{display:block}
+.meta{display:flex;justify-content:space-between;font-size:12.5px;color:var(--mut);margin-top:8px}
+.opts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0}@media(max-width:600px){.opts{grid-template-columns:1fr}.ur{flex-direction:column}}
+label.l{display:block;font-size:12px;font-weight:600;color:var(--mut);margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em}
+.lk{background:none;border:0;color:var(--ac);font-weight:600;cursor:pointer;padding:8px 0;font-size:14px}
+.hist{margin-top:14px;display:none}.hist.on{display:block}.hist h6,h2.s{margin:0 0 8px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}
+.hi{display:flex;justify-content:space-between;gap:10px;padding:9px 12px;border:1px solid var(--ln);border-radius:12px;margin-bottom:6px;cursor:pointer;background:var(--card);font-size:14px}.hi span{color:var(--mut);font-size:12.5px}
+#res{display:none;margin-top:20px}
+.rh{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap;margin-bottom:12px}
+.rh h2{font:600 24px/1.2 'Fraunces',Georgia,serif;margin:0;letter-spacing:-.5px;max-width:560px}
+.ch{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}.ch b{font-weight:500;font-size:12px;background:var(--soft);color:var(--ac);padding:3px 10px;border-radius:99px}
+.tb{display:flex;flex-wrap:wrap;gap:2px;border-bottom:1px solid var(--ln);margin-bottom:16px}
+.tb button{border:0;background:none;padding:10px 14px;cursor:pointer;font-weight:600;color:var(--mut);border-bottom:2px solid transparent;white-space:nowrap}.tb button.on{color:var(--ink);border-color:var(--ac)}
+.pn{display:none}.pn.on{display:block}
+.vw{overflow:hidden;border-radius:18px;border:1px solid var(--ln)}.tk{display:flex;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.sl{min-width:100%;padding:26px 24px;min-height:300px;background:linear-gradient(155deg,var(--soft),var(--card) 70%)}
+.no{font:600 13px 'Inter';color:var(--gold);letter-spacing:.14em}
+.sl h3{font:600 26px/1.2 'Fraunces',Georgia,serif;margin:8px 0 12px;letter-spacing:-.5px}
+.sl ul{margin:0 0 16px;padding:0;list-style:none}.sl li{padding:7px 0 7px 18px;position:relative;border-bottom:1px solid var(--ln)}.sl li:before{content:"";position:absolute;left:0;top:16px;width:6px;height:6px;border-radius:50%;background:var(--ac2)}
+.ky{border-left:3px solid var(--gold);background:var(--card);padding:10px 14px;border-radius:0 12px 12px 0;font-weight:600}.art{display:block;width:100%;max-height:118px;margin:6px 0 2px;animation:fl 6s ease-in-out infinite}@keyframes fl{50%{transform:translateY(-5px)}}#a.cine .art{max-height:170px}.st{font:600 44px/1 'Fraunces',Georgia,serif;color:var(--ac);margin:0 0 12px}.sl.on li,.sl.on .ky,.sl.on .st{animation:up .6s both}.sl.on li:nth-child(2){animation-delay:.2s}.sl.on li:nth-child(3){animation-delay:.4s}.sl.on .ky{animation-delay:.6s}@keyframes up{from{opacity:0;transform:translateY(14px)}}.cx{display:none;position:fixed;top:calc(14px + env(safe-area-inset-top,0px));right:14px;z-index:70}#a.cine .cx{display:block}#a.cine .vw{position:fixed;inset:0;z-index:60;border-radius:0;border:0;background:#0b0e17}#a.cine .tk{height:100%}#a.cine .sl{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:70px 26px 40px;color:#eef0f6;background:radial-gradient(600px 420px at 15% 8%,rgba(139,133,255,.38),transparent),radial-gradient(520px 420px at 95% 95%,rgba(52,211,200,.26),transparent),#0b0e17}#a.cine .sl h3{font-size:clamp(28px,7.5vw,46px)}#a.cine .sl li{font-size:clamp(17px,4.4vw,22px);border-color:rgba(255,255,255,.12)}#a.cine .ky{background:rgba(255,255,255,.07);color:#eef0f6}#a.cine .st{font-size:clamp(46px,14vw,84px);color:#8b85ff}.ky small{display:block;color:var(--gold);font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+.pg{height:3px;background:var(--ln);border-radius:9px;margin:12px 0}.pg i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ac),var(--ac2));border-radius:9px;transition:width .5s}
+.ct{display:flex;align-items:center;gap:8px}.ct .btn{padding:10px 14px}.ct #py{flex:1}.dots{flex:1;display:flex;gap:5px;justify-content:center}.dots b{width:7px;height:7px;border-radius:9px;background:var(--ln);cursor:pointer;transition:.3s}.dots b.on{width:22px;background:var(--ac)}
+.sp{display:flex;gap:10px;align-items:center;font-size:13px;color:var(--mut);margin-top:12px;flex-wrap:wrap}.sp select{width:auto;padding:6px 10px}
+.pr p{margin:0 0 14px}.q{border:1px solid var(--ln);border-radius:14px;padding:13px 15px;margin-bottom:8px;cursor:pointer}.q b{font-weight:600}.q span{display:none;color:var(--ac2);margin-top:6px}.q.o span{display:block}
+.ac{display:flex;gap:10px;padding:11px 13px;border:1px solid var(--ln);border-radius:12px;margin-bottom:8px}.ac input{accent-color:var(--ac);margin-top:5px}
+.ch2{display:flex;flex-direction:column;gap:10px;max-height:380px;overflow-y:auto;margin-bottom:12px}.m{padding:10px 14px;border-radius:14px;max-width:88%;white-space:pre-wrap}.m.u{align-self:flex-end;background:var(--ac);color:#fff}.m.a{align-self:flex-start;background:var(--bg2)}
+.sg{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}.sg button{border:1px solid var(--ln);background:var(--card);border-radius:99px;padding:5px 12px;font-size:12.5px;cursor:pointer;color:var(--mut)}
+.tx{max-height:360px;overflow-y:auto;font-size:14px;color:var(--mut);margin-top:10px}.tx p{margin:0 0 10px}mark{background:color-mix(in srgb,var(--gold) 35%,transparent);color:inherit}
+.sk{height:13px;border-radius:8px;margin:11px 0;background:linear-gradient(90deg,var(--bg2),var(--ln),var(--bg2));background-size:200% 100%;animation:sh 1.2s infinite}@keyframes sh{to{background-position:-200% 0}}
+.ad{margin:18px 0;border:1px dashed var(--ln);border-radius:14px;padding:14px;text-align:center;color:var(--mut);font-size:12.5px}
+.ft{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:26px 0}@media(max-width:700px){.ft,.pl{grid-template-columns:1fr!important}}
+.ft div,.pc{border:1px solid var(--ln);background:var(--card);border-radius:18px;padding:16px}.ft b{display:block;margin-bottom:4px}.ft span{color:var(--mut);font-size:13.5px}
+.pl{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.pc.hot{border:1.5px solid var(--ac);box-shadow:var(--sh)}.pc h4{margin:0;font-size:15px}.pc .pp{font:600 30px 'Fraunces',serif;margin:6px 0}.pc ul{margin:0 0 12px;padding-left:18px;color:var(--mut);font-size:13.5px}.pc .btn{width:100%}
+footer{text-align:center;color:var(--mut);font-size:12px;margin-top:30px}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:12px;font-size:13.5px;opacity:0;pointer-events:none;transition:.3s;max-width:90%;text-align:center}#toast.on{opacity:1}
+</style></head><body><div class="w">
+<nav><div class="br"><div class="lm" data-ic="spark"></div>Vocript</div><div class="nr"><span class="pill" id="mt"></span><button class="ib" id="th" aria-label="Toggle theme" data-ic="moon"></button></div></nav>
+<section class="hero"><div class="ey">AI video intelligence</div><h1>Hours of video.<br>Minutes to understand.</h1><p>Paste a YouTube or Instagram link, pick your language, and get slides, a summary, a transcript and answers, ready to read, hear and ask.</p></section>
+
+<section class="card">
+<div class="seg" id="sg"><button class="on" data-s="yt">YouTube</button><button data-s="ig">Instagram</button></div>
+<div class="ur"><input type="url" id="lk" placeholder="https://www.youtube.com/watch?v=..."><button class="btn" id="ft"><span data-ic="link"></span>Get transcript</button></div>
+<div class="note" id="nt"></div>
+<textarea id="tx" placeholder="Transcript appears here. You can also paste any transcript or text."></textarea>
+<div class="meta"><span id="wc">0 words</span><button class="lk" id="dm" style="padding:0">Try a sample</button></div>
+<div class="opts">
+<div><label class="l" for="lg">Summary language</label><select id="lg"></select></div>
+<div><label class="l" for="lv">Style</label><select id="lv"><option value="very simple everyday words and short sentences">Simple</option><option value="clear, neutral and professional">Professional</option><option value="detailed, with key terms explained">Detailed</option></select></div>
+<div><label class="l" for="mn">Length</label><select id="mn"><option value="1">1 minute</option><option value="3" selected>3 minutes</option><option value="5">5 minutes</option></select></div>
+</div>
+<button class="btn p" id="gen" style="width:100%;padding:13px"><span data-ic="spark"></span>Generate everything</button>
+<div class="hist" id="hs"><h6>Recent</h6><div id="hl"></div></div>
+</section>
+<div class="ad" id="ad">Advertisement space (shown on the Free plan)</div>
+
+<section id="res" class="card"></section>
+
+<section class="ft"><div><b>Any language</b><span>Summaries, slides and transcripts in 20+ languages, with voice playback.</span></div><div><b>Ask the video</b><span>Chat with the content and get answers grounded in the transcript.</span></div><div><b>Learn faster</b><span>Auto-generated quizzes and action checklists from every video.</span></div></section>
+
+<h2 class="s">Plans</h2>
+<section class="pl">
+<div class="pc"><h4>Free</h4><div class="pp">$0</div><ul><li>5 long videos per month</li><li>Standard ads</li><li>Browser voice</li></ul><button class="btn" data-pl="Free">Current plan</button></div>
+<div class="pc hot"><h4>Plus</h4><div class="pp">₹149<small style="font-size:13px;font-family:Inter"> /mo</small></div><ul><li>50+ videos per month</li><li>50% fewer ads</li><li>All languages and exports</li></ul><button class="btn p" data-pl="Plus">Join waitlist</button></div>
+<div class="pc"><h4>Pro</h4><div class="pp">₹299<small style="font-size:13px;font-family:Inter"> /mo</small></div><ul><li>Higher limits</li><li>No ads</li><li>Premium AI voices</li></ul><button class="btn" data-pl="Pro">Join waitlist</button></div>
+</section>
+<footer>Vocript.<br> AI-generated content can contain errors; verify important details in the original video.</footer>
+</div><div id="toast"></div>
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const LIVE=typeof claude==="undefined";
+if(LIVE){const S1=async(t,o)=>{const r=await fetch("/api/ai",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({prompt:t})});if(!r.ok)throw{code:r.status==429?"rate_limited":"error"};const j=await r.json();if(o&&o.onText)o.onText({text:j.text});return{text:j.text}};S1.json=async t=>JSON.parse((await S1(t)).text.replace(/```json|```/g,"").trim());window.claude={use:async n=>n=="sample"?S1:n=="downloads"?{save:async({filename:f,data:d})=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([d]));a.download=f;a.click()}}:null}}
+const API=LIVE?"/api/transcript":"";
+const AI={growth:'<path d="M3 17l6-6 4 4 8-8M15 7h6v6"/>',money:'<circle cx="12" cy="12" r="9"/><path d="M14.5 9.5c-.5-1-3.5-1.2-3.5.8 0 2.4 3.8 1.2 3.8 3.4 0 1.9-3.3 2-4.3.6M12 6.5v1.5M12 16v1.5"/>',people:'<circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.5 3-6 6-6s6 2.5 6 6M16 5a3 3 0 010 6M18 14c2 .7 3 2.5 3 5"/>',brain:'<path d="M9 4a3 3 0 00-3 3 3 3 0 00-2 3 3 3 0 002 3 3 3 0 003 4V4zM15 4a3 3 0 013 3 3 3 0 012 3 3 3 0 01-2 3 3 3 0 01-3 4V4z"/>',time:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',warning:'<path d="M12 3l10 18H2z"/><path d="M12 10v5M12 18v.5"/>',target:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/>',idea:'<path d="M9 18h6M10 21h4M12 3a6 6 0 00-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0012 3z"/>',health:'<path d="M12 20s-8-5-8-11a4.5 4.5 0 018-2.5A4.5 4.5 0 0120 9c0 6-8 11-8 11z"/>',tech:'<rect x="4" y="5" width="16" height="11" rx="2"/><path d="M9 20h6M12 16v4"/>',book:'<path d="M4 5a2 2 0 012-2h13v16H6a2 2 0 00-2 2zM4 19a2 2 0 012-2h13"/>',world:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/>'};
+const art=v=>`<svg class="art" viewBox="0 0 200 120" aria-hidden="true"><circle cx="58" cy="62" r="48" fill="var(--ac)" opacity=".13"/><circle cx="146" cy="70" r="40" fill="var(--ac2)" opacity=".16"/><circle cx="30" cy="20" r="3" fill="var(--gold)"/><circle cx="176" cy="26" r="2.5" fill="var(--ac)"/><g transform="translate(68 28) scale(2.7)" fill="none" stroke="var(--ac)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">${AI[v]||AI.idea}</g></svg>`;
+const IC={play:'<path d="M7 4l13 8-13 8z"/>',pause:'<path d="M8 5v14M16 5v14"/>',prev:'<path d="M15 5l-7 7 7 7"/>',next:'<path d="M9 5l7 7-7 7"/>',link:'<path d="M10 14a4 4 0 005.7 0l3-3a4 4 0 00-5.7-5.7l-1 1M14 10a4 4 0 00-5.7 0l-3 3a4 4 0 005.7 5.7l1-1"/>',dl:'<path d="M12 4v11M7 11l5 5 5-5M5 20h14"/>',copy:'<rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 012-2h9"/>',moon:'<path d="M20 14A8 8 0 019.5 4 8 8 0 1020 14z"/>',spark:'<path d="M12 3l2.2 6.3L21 12l-6.8 2.7L12 21l-2.2-6.3L3 12l6.8-2.7z"/>',vol:'<path d="M4 9v6h4l5 4V5L8 9zM17 8a5 5 0 010 8"/>',send:'<path d="M4 12l16-8-6 16-3-7z"/>',tr:'<path d="M4 5h9M8 3v2M6 5c1 4 3 6 6 8M12 5c-1 4-3 6-6 8M13 20l4-9 4 9M14.5 17h5"/>'};
+const ic=n=>`<svg class="i" viewBox="0 0 24 24">${IC[n]}</svg>`;
+function icons(r=document){r.querySelectorAll("[data-ic]").forEach(e=>{e.insertAdjacentHTML("afterbegin",ic(e.dataset.ic));e.removeAttribute("data-ic")})}
+const LG=[["Hindi","hi-IN"],["English","en-IN"],["Bhojpuri (simple Hindi script)","hi-IN"],["Maithili","hi-IN"],["Bengali","bn-IN"],["Marathi","mr-IN"],["Tamil","ta-IN"],["Telugu","te-IN"],["Gujarati","gu-IN"],["Kannada","kn-IN"],["Malayalam","ml-IN"],["Punjabi","pa-IN"],["Urdu","ur-IN"],["Hinglish (Hindi in Roman letters)","hi-IN"],["Spanish","es-ES"],["French","fr-FR"],["German","de-DE"],["Arabic","ar-SA"],["Portuguese","pt-BR"],["Indonesian","id-ID"],["Russian","ru-RU"],["Japanese","ja-JP"],["Korean","ko-KR"],["Chinese Simplified","zh-CN"],["Chinese Traditional","zh-TW"],["Italian","it-IT"],["Turkish","tr-TR"],["Dutch","nl-NL"],["Polish","pl-PL"],["Ukrainian","uk-UA"],["Vietnamese","vi-VN"],["Thai","th-TH"],["Swahili","sw-KE"],["Persian","fa-IR"],["Hebrew","he-IL"],["Greek","el-GR"],["Czech","cs-CZ"],["Romanian","ro-RO"],["Hungarian","hu-HU"],["Swedish","sv-SE"],["Norwegian","nb-NO"],["Danish","da-DK"],["Finnish","fi-FI"],["Nepali","ne-NP"],["Sinhala","si-LK"],["Assamese","as-IN"],["Odia","or-IN"],["Malay","ms-MY"],["Filipino","fil-PH"],["Bulgarian","bg-BG"],["Serbian","sr-RS"],["Afrikaans","af-ZA"]];
+$("#lg").innerHTML=LG.map((l,i)=>`<option value="${i}">${l[0].replace(/ \(.*/,"")}</option>`).join("");
+const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const toast=t=>{const e=$("#toast");e.textContent=t;e.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove("on"),2800)};
+const FREE=5,UK="ss_used_"+new Date().toISOString().slice(0,7);let used=0,HIST=[];
+try{used=+localStorage.getItem(UK)||0;HIST=JSON.parse(localStorage.getItem("ss_hist")||"[]")}catch(e){}
+const meter=()=>$("#mt").textContent=`Free plan: ${Math.max(0,FREE-used)} of ${FREE} left`;
+const hsave=()=>{try{localStorage.setItem("ss_hist",JSON.stringify(HIST.slice(0,6)));localStorage.setItem(UK,used)}catch(e){}};
+let S={slides:[],sum:"",quiz:[],acts:[],raw:"",lang:0,title:""},P={play:false,tok:0,i:0,src:"yt",chat:[]};
+icons();meter();
+$("#th").onclick=()=>{const r=document.documentElement;r.setAttribute("data-theme",getComputedStyle(r).colorScheme=="dark"?"light":"dark")};
+$$("[data-pl]").forEach(b=>b.onclick=()=>toast(b.dataset.pl=="Free"?"You are on the Free plan.":"Paid plans open soon. Waitlist coming next."));
+$$("#sg button").forEach(b=>b.onclick=()=>{$$("#sg button").forEach(x=>x.classList.remove("on"));b.classList.add("on");P.src=b.dataset.s;$("#lk").placeholder=P.src=="yt"?"https://www.youtube.com/watch?v=...":"https://www.instagram.com/reel/...";note("")});
+const note=t=>{const n=$("#nt");n.textContent=t;n.classList.toggle("on",!!t)};
+const words=()=>($("#tx").value.trim().match(/\S+/g)||[]).length;
+$("#tx").oninput=()=>$("#wc").textContent=words().toLocaleString()+" words";
+function histUI(){$("#hs").classList.toggle("on",HIST.length>0);$("#hl").innerHTML=HIST.map((h,i)=>`<div class="hi" data-h="${i}"><div>${esc(h.title)}</div><span>${esc(LG[h.lang][0].replace(/ \(.*/,""))}</span></div>`).join("");$$(".hi").forEach(e=>e.onclick=()=>{const h=HIST[+e.dataset.h];S=Object.assign({raw:""},h);build()})}
+histUI();
+
+$("#ft").onclick=async()=>{
+ const u=$("#lk").value.trim();
+ if(!u){toast("Paste a link first.");return}
+ if(!(P.src=="yt"?/youtu(\.be|be\.com)/i:/instagram\.com/i).test(u)){toast("This does not look like a "+(P.src=="yt"?"YouTube":"Instagram")+" link.");return}
+ if(!API){note("Automatic transcript fetching needs a small server, because a web page cannot read YouTube or Instagram directly. This preview cannot reach it yet; the ready-made server code (transcript-api.js) is included for deployment. For now, paste the transcript below: on YouTube open the description, choose Show transcript, and copy it."+(P.src=="ig"?" Instagram videos have no public transcript, so they need audio speech-to-text on the server.":""));return}
+ const b=$("#ft");b.disabled=true;
+ try{const r=await fetch(API+"?url="+encodeURIComponent(u)),j=await r.json();if(!j.transcript)throw 0;$("#tx").value=j.transcript;$("#tx").oninput();note("")}catch(e){note("Could not fetch a transcript for this link. Paste it manually below.")}
+ b.disabled=false};
+
+function loading(){$("#res").style.display="block";$("#res").innerHTML='<div class="sk" style="width:50%;height:24px"></div><div class="sk"></div><div class="sk"></div><div class="sk" style="width:75%"></div>';$("#res").scrollIntoView({behavior:"smooth"})}
+$("#dm").onclick=()=>{S={lang:1,title:"Sample: How compound interest builds wealth",raw:"",slides:[{title:"Interest on interest",points:["You earn interest on your original amount.","Then that interest earns interest of its own."],key:"This is called compounding."},{title:"Time is the biggest lever",points:["Starting early beats investing more later.","A late start means a larger monthly amount."],key:"Begin with a small amount today."},{title:"The rule of 72",points:["Divide 72 by the annual interest rate.","The result is the years needed to double your money."],key:"At 12%, money doubles in about 6 years."},{title:"The same force works on debt",points:["High-interest debt compounds against you.","Credit card balances grow quickly."],key:"Clear expensive debt first."}],sum:"Compound interest means the interest you earn also starts earning interest. Over long periods this makes balances grow faster and faster.\n\nThe rule of 72 estimates how long money takes to double. The same mechanism applies to loans, which is why costly debt should be paid off first.",quiz:[{q:"What is compound interest?",a:"Interest that is earned on previously earned interest."},{q:"What does the rule of 72 estimate?",a:"The number of years for money to double."}],acts:["Start a small automatic investment this month.","Pay off the highest-interest debt first."]};$("#lg").value=1;build()};
+
+$("#gen").onclick=async()=>{
+ const tx=$("#tx").value.trim();
+ if(tx.length<200){if($("#lk").value.trim()){await $("#ft").onclick();if($("#tx").value.trim().length>=200)return $("#gen").onclick()}else toast("Paste a link or a longer transcript.");return}
+ if(used>=FREE){toast("Free limit reached for this month. Paid plans open soon.");return}
+ let sm=null;try{sm=await claude.use("sample")}catch(e){}
+ if(!sm){toast("AI is not available in this view. Try the sample.");return}
+ const li=+$("#lg").value,L=LG[li][0],m=$("#mn").value,b=$("#gen");b.disabled=true;loading();
+ const pr=`You are Vocript. Summarize the transcript below using ONLY information it contains; never invent facts. Do not use emojis. Output ONLY valid JSON with this shape: {"title":string,"slides":[{"visual":one of growth|money|people|brain|time|warning|target|idea|health|tech|book|world,"title":string,"stat":a short number or phrase that highlights the slide, or an empty string,"points":[2-3 short strings],"key":one short takeaway}] (${m==1?"4-5":m==3?"6-8":"9-11"} slides),"summary":string (paragraphs separated by blank lines, about ${m*140} words),"actions":[3-5 practical takeaways],"quiz":[{"q":string,"a":string}] (4 items)}. Write every text value in ${L}. Style: ${$("#lv").value}.\n\nTRANSCRIPT:\n`+tx.slice(0,80000);
+ try{const r=await sm.json(pr);if(!r||!Array.isArray(r.slides)||!r.slides.length)throw 0;
+  S={slides:r.slides,sum:r.summary||"",quiz:r.quiz||[],acts:r.actions||[],raw:tx,lang:li,title:r.title||"Your summary"};
+  used++;HIST.unshift({title:S.title,slides:S.slides,sum:S.sum,quiz:S.quiz,acts:S.acts,lang:li});hsave();meter();histUI();build()
+ }catch(e){$("#res").style.display="none";toast(e&&e.code=="rate_limited"?"Please wait a moment and try again.":"Could not generate the summary. Please try again.")}
+ b.disabled=false};
+
+function build(){
+ stop();P.chat=[];const n=S.slides.length;
+ $("#res").style.display="block";
+ $("#res").innerHTML=`<div class="rh"><div><h2>${esc(S.title)}</h2><div class="ch"><b>${n} slides</b><select id="rl" aria-label="Read and listen in" style="width:auto;padding:4px 10px;border-radius:99px">${LG.map((l,i)=>`<option value="${i}"${i==S.lang?" selected":""}>${l[0].replace(/ \(.*/,"")}</option>`).join("")}</select></div></div><div style="display:flex;gap:8px"><button class="btn" id="cp"><span data-ic="copy"></span>Copy</button><button class="btn" id="dw"><span data-ic="dl"></span>Download</button></div></div>
+<div class="tb" id="tb"><button class="on" data-p="a">Slides</button><button data-p="b">Summary</button><button data-p="c">Ask AI</button><button data-p="d">Transcript</button><button data-p="e">Quiz</button><button data-p="f">Actions</button></div>
+<div class="pn on" id="a"><div class="vw" id="vw"><div class="tk" id="tk">${S.slides.map((s,i)=>`<div class="sl"><div class="no">${String(i+1).padStart(2,"0")} / ${String(n).padStart(2,"0")}</div>${art(s.visual)}<h3>${esc(s.title)}</h3>${s.stat?`<div class="st">${esc(s.stat)}</div>`:""}<ul>${(s.points||[]).map(p=>`<li>${esc(p)}</li>`).join("")}</ul><div class="ky"><small>Key takeaway</small>${esc(s.key)}</div></div>`).join("")}</div><button class="btn cx" id="cx">Close</button></div><div class="pg"><i id="pgi"></i></div>
+<div class="dots" id="ds" style="margin-bottom:12px">${S.slides.map((_,i)=>`<b data-i="${i}"></b>`).join("")}</div><div class="ct"><button class="btn" id="pv" aria-label="Previous" data-ic="prev"></button><button class="btn p" id="py"><span data-ic="vol"></span><span id="pt">Listen</span></button><button class="btn" id="wt"><span data-ic="play"></span>Watch</button><button class="btn" id="nx" aria-label="Next" data-ic="next"></button></div>
+<div class="sp">Voice speed <select id="sd"><option value="0.8">Slow</option><option value="1" selected>Normal</option><option value="1.25">Fast</option></select><span>${window.speechSynthesis?"Swipe or use arrow keys":"Voice needs a full browser such as Chrome or Safari"}</span></div></div>
+<div class="pn pr" id="b">${S.sum.split(/\n+/).filter(Boolean).map(p=>`<p>${esc(p)}</p>`).join("")}<button class="btn" id="sl2"><span data-ic="vol"></span>Listen to summary</button></div>
+<div class="pn" id="c"><div class="sg">${["What are the main points?","Explain this in simple words","What should I do next?"].map(q=>`<button data-q="${q}">${q}</button>`).join("")}</div><div class="ch2" id="cm"></div><div class="ur"><input type="text" id="ci" placeholder="Ask anything about this video"><button class="btn p" id="cs"><span data-ic="send"></span>Send</button></div></div>
+<div class="pn" id="d">${S.raw?`<div class="ur"><input type="text" id="ts" placeholder="Search the transcript"><button class="btn" id="tt"><span data-ic="tr"></span>Translate</button></div><div class="tx" id="tv"></div>`:'<p style="color:var(--mut)">The full transcript is available for videos you generate from a pasted transcript.</p>'}</div>
+<div class="pn" id="e">${S.quiz.map(q=>`<div class="q"><b>${esc(q.q)}</b><span>${esc(q.a)}</span></div>`).join("")}</div>
+<div class="pn" id="f">${S.acts.map(a=>`<label class="ac"><input type="checkbox"><span>${esc(a)}</span></label>`).join("")}</div>`;
+ icons($("#res"));go(0);wire();$("#res").scrollIntoView({behavior:"smooth"})}
+
+function go(i){P.i=Math.max(0,Math.min(S.slides.length-1,i));$("#tk").style.transform=`translateX(-${P.i*100}%)`;$("#pgi").style.width=(P.i+1)/S.slides.length*100+"%";$$("#ds b").forEach((b,k)=>b.classList.toggle("on",k==P.i));$$(".sl").forEach((s,k)=>s.classList.toggle("on",k==P.i))}
+const cur=()=>{const s=S.slides[P.i];return s.title+". "+(s.points||[]).join(". ")+". "+s.key};
+function say(t,nx){if(!window.speechSynthesis){toast("Voice is not supported in this browser.");stop();return}
+ speechSynthesis.cancel();const k=++P.tok,u=new SpeechSynthesisUtterance(t),c=LG[S.lang][1];u.lang=c;u.rate=+($("#sd")||{value:1}).value;
+ const v=speechSynthesis.getVoices().find(v=>v.lang.replace("_","-").startsWith(c.slice(0,2)));if(v)u.voice=v;
+ u.onend=()=>{if(k!==P.tok)return;if(nx&&nx())say(cur(),nx)};speechSynthesis.speak(u)}
+const nxt=()=>{if(P.i<S.slides.length-1){go(P.i+1);return true}stop();return false};
+function stop(){P.play=false;P.tok++;clearTimeout(P.tm);try{speechSynthesis.cancel()}catch(e){}const t=$("#pt");if(t)t.textContent="Listen";const a=$("#a");if(a)a.classList.remove("cine")}
+function nav(i){go(i);if(P.play){if(window.speechSynthesis)say(cur(),nxt);else{clearTimeout(P.tm);cstep(false)}}}
+async function retr(e){const li=+e.target.value,old=S.lang;let sm=null;try{sm=await claude.use("sample")}catch(x){}if(!sm){toast("AI is not available in this view.");e.target.value=old;return}
+ e.target.disabled=true;toast("Translating...");
+ try{const r=await sm.json(`Translate every text value of this JSON into ${LG[li][0]}. Keep keys and structure identical. No emojis. Output ONLY the JSON.\n`+JSON.stringify({title:S.title,slides:S.slides,summary:S.sum,quiz:S.quiz,actions:S.acts}));
+  if(!r||!Array.isArray(r.slides))throw 0;S.title=r.title||S.title;S.slides=r.slides;S.sum=r.summary||S.sum;S.quiz=r.quiz||S.quiz;S.acts=r.actions||S.acts;S.lang=li;build()}catch(x){e.target.value=old;e.target.disabled=false;toast("Translation failed. Please try again.")}}
+function startCine(){if(!S.slides.length)return;$("#a").classList.add("cine");go(0);P.play=true;const hv=!!window.speechSynthesis;if(!hv)toast("Voice is not available here. Playing with timed captions.");cstep(hv)}
+function cstep(hv){if(!P.play)return;if(hv){say(cur(),()=>{if(P.i<S.slides.length-1){go(P.i+1);return true}stop();return false})}else{P.tm=setTimeout(()=>{if(!P.play)return;if(nxt())cstep(false)},Math.max(6000,cur().split(/\s+/).length*420))}}
+function wire(){
+ $("#rl").onchange=retr;$("#wt").onclick=startCine;$("#cx").onclick=()=>stop();
+ $$("#tb button").forEach(b=>b.onclick=()=>{$$("#tb button").forEach(x=>x.classList.remove("on"));b.classList.add("on");$$("#res .pn").forEach(p=>p.classList.toggle("on",p.id==b.dataset.p));stop()});
+ $("#pv").onclick=()=>nav(P.i-1);$("#nx").onclick=()=>nav(P.i+1);$$("#ds b").forEach(b=>b.onclick=()=>nav(+b.dataset.i));
+ $("#py").onclick=()=>{if(P.play){stop();return}P.play=true;$("#pt").textContent="Pause";say(cur(),nxt)};
+ $("#sl2").onclick=()=>{if(P.play){stop();return}P.play=true;say(S.sum,()=>{stop();return false})};
+ let sx=null;$("#vw").addEventListener("touchstart",e=>sx=e.touches[0].clientX,{passive:true});$("#vw").addEventListener("touchend",e=>{if(sx==null)return;const d=e.changedTouches[0].clientX-sx;if(Math.abs(d)>40)nav(P.i+(d<0?1:-1));sx=null});
+ const text=()=>S.title+"\n\n"+S.sum+"\n\nKey points\n"+S.slides.map(s=>"- "+s.title+": "+(s.points||[]).join("; ")).join("\n")+"\n\nActions\n"+S.acts.map(a=>"- "+a).join("\n");
+ $("#cp").onclick=async()=>{try{await navigator.clipboard.writeText(text());toast("Copied to clipboard.")}catch(e){toast("Copy is not available here.")}};
+ $("#dw").onclick=async()=>{try{const d=await claude.use("downloads");if(!d){toast("Download is not available in this view.");return}await d.save({filename:"vocript-summary.txt",data:text()})}catch(e){if(!e||e.code!="declined")toast("Could not save the file.")}};
+ const send=async q=>{q=(q||$("#ci").value).trim();if(!q)return;$("#ci").value="";const box=$("#cm");
+  box.insertAdjacentHTML("beforeend",`<div class="m u">${esc(q)}</div>`);const a=document.createElement("div");a.className="m a";a.textContent="Thinking...";box.appendChild(a);box.scrollTop=1e9;
+  let sm=null;try{sm=await claude.use("sample")}catch(e){}if(!sm){a.textContent="AI is not available in this view.";return}
+  P.chat.push({role:"user",content:q});
+  const ctx=`You answer questions about one video. Use ONLY the material below; if the answer is not there, say so. No emojis. Reply in ${LG[S.lang][0].replace(/ \(.*/,"")}.\n\nSUMMARY:\n${S.sum}\n\nTRANSCRIPT:\n${(S.raw||"").slice(0,60000)}\n\nCONVERSATION:\n`+P.chat.slice(-6).map(m=>m.role+": "+m.content).join("\n")+"\nassistant:";
+  try{const r=await sm(ctx,{cache:false,onText:({text})=>{a.textContent=text;box.scrollTop=1e9}});P.chat.push({role:"assistant",content:r.text})}catch(e){a.textContent="Could not get an answer. Please try again."}};
+ $("#cs").onclick=()=>send();$("#ci").onkeydown=e=>{if(e.key=="Enter")send()};$$("[data-q]").forEach(b=>b.onclick=()=>send(b.dataset.q));
+ if(S.raw){const tv=$("#tv"),paras=S.raw.split(/\n+/).filter(Boolean).length>3?S.raw.split(/\n+/).filter(Boolean):S.raw.match(/[^.!?]+[.!?]*\s*/g)||[S.raw];
+  const draw=f=>{const q=(f||"").toLowerCase();tv.innerHTML=paras.filter(p=>!q||p.toLowerCase().includes(q)).slice(0,300).map(p=>`<p>${esc(p).replace(q?new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,"\\$&"),"gi"):/$^/,m=>`<mark>${m}</mark>`)}</p>`).join("")||"<p>No matches.</p>"};
+  draw();$("#ts").oninput=e=>draw(e.target.value);
+  $("#tt").onclick=async()=>{let sm=null;try{sm=await claude.use("sample")}catch(e){}if(!sm){toast("AI is not available in this view.");return}
+   const b=$("#tt");b.disabled=true;tv.innerHTML="";const L=LG[S.lang][0].replace(/ \(.*/,""),ch=S.raw.match(/[\s\S]{1,5000}/g).slice(0,6);
+   try{for(const c of ch){const p=document.createElement("p");p.textContent="Translating...";tv.appendChild(p);const r=await sm(`Translate this transcript excerpt into ${L}. Keep the meaning, fix obvious speech-to-text errors, output only the translation, no emojis.\n\n${c}`,{onText:({text})=>p.textContent=text});p.textContent=r.text}
+    if(S.raw.length>30000)toast("Translated the first part of the transcript.")}catch(e){toast("Translation stopped. Please try again.")}b.disabled=false}}}
+document.addEventListener("keydown",e=>{if(!$("#a")||!$("#a").classList.contains("on")||/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName))return;if(e.key=="ArrowRight")nav(P.i+1);if(e.key=="ArrowLeft")nav(P.i-1)});
+if(window.speechSynthesis)speechSynthesis.getVoices();
+</script></body></html>
